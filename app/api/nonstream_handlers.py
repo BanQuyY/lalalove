@@ -362,9 +362,9 @@ async def process_request(
                 extra={'request_type': 'non-stream', 'model': chat_request.model})
             
             if is_gemini :
-                return gemini_from_text(content="空响应次数达到上限\n请修改输入提示词",finish_reason="STOP",stream=False)
+                return gemini_from_text(content="số lượng phản hồi trống đã đạt đến giới hạn\nvui lòng sửa đổi tham số hoặc nội dung prompt",finish_reason="STOP",stream=False)
             else:
-                return openAI_from_text(model=chat_request.model,content="空响应次数达到上限\n请修改输入提示词",finish_reason="stop",stream=False)
+                return openAI_from_text(model=chat_request.model,content="số lượng phản hồi trống đã đạt đến giới hạn\nvui lòng sửa đổi tham số hoặc nội dung prompt",finish_reason="stop",stream=False)
     
     # 如果所有尝试都失败
     log('error', "API key 替换失败，所有API key都已尝试，请重新配置或稍后重试", extra={'request_type': 'switch_key'})
@@ -548,9 +548,9 @@ async def process_nonstream_with_keepalive_stream(
                         extra={'request_type': 'non-stream', 'model': chat_request.model})
                     
                     if is_gemini :
-                        error_response = gemini_from_text(content="空响应次数达到上限\n请修改输入提示词", finish_reason="STOP", stream=False)
+                        error_response = gemini_from_text(content="số lượng phản hồi trống đã đạt đến giới hạn\nvui lòng sửa đổi tham số hoặc nội dung prompt", finish_reason="STOP", stream=False)
                     else:
-                        error_response = openAI_from_text(model=chat_request.model, content="空响应次数达到上限\n请修改输入提示词", finish_reason="stop", stream=False)
+                        error_response = openAI_from_text(model=chat_request.model, content="số lượng phản hồi trống đã đạt đến giới hạn\nvui lòng sửa đổi tham số hoặc nội dung prompt", finish_reason="stop", stream=False)
                     
                     yield json.dumps(error_response, ensure_ascii=False)
                     return
